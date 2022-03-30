@@ -1,5 +1,6 @@
 import static javax.swing.JOptionPane.*;
 import static java.lang.Integer.parseInt;
+import static java.lang.Double.parseDouble;
 
 public class Util {
 
@@ -18,10 +19,10 @@ public class Util {
 		if (indice == -1) {
 			showMessageDialog(null, "CPF " + cpf + " não cadastrado.");
 		} else {
-			showMessageDialog(null, "\nUsuário: " + bilhete[indice].usuario.nome + "\nSaldo:  R$ " + bilhete[indice].getSaldo() + "\nTipo: " + bilhete[indice].usuario.tipo);
+			showMessageDialog(null, "\nUsuário: " + bilhete[indice].getUsuario().getNome() + "\nSaldo:  R$ " + bilhete[indice].getSaldo() + "\nTipo: " + bilhete[indice].getUsuario().getTipo());
 		}
 	}
-	
+
 // método que, quando chamado, verifca qual tipo de bilhete do usuário e desconta o valor da passagem de seu saldo.
 	public void passarNaCatraca() {
 		String cpf;
@@ -34,7 +35,7 @@ public class Util {
 		} else {
 			if (bilhete[indice].getSaldo() > 0) {
 				bilhete[indice].passarNaCatraca();
-				showMessageDialog(null, bilhete[indice].usuario.nome + " o seu saldo após passar na catraca é de: R$" + bilhete[indice].getSaldo());
+				showMessageDialog(null, bilhete[indice].getUsuario().getNome() + " o seu saldo após passar na catraca é de: R$" + bilhete[indice].getSaldo());
 			} else {
 				showMessageDialog(null, "Você não possui saldo suficiente! Saldo atual : R$" + bilhete[indice].getSaldo());
 			}
@@ -51,10 +52,10 @@ public class Util {
 		if (indice == -1) {
 			showMessageDialog(null, "CPF " + cpf + " não cadastrado.");
 		} else {
-			int valor;
-			valor = parseInt(showInputDialog("Informe o valor que deseja carregar: R$ "));
+			double valor;
+			valor = parseDouble(showInputDialog("Informe o valor que deseja carregar: R$ "));
 			bilhete[indice].carregar(valor);
-			showMessageDialog(null, bilhete[indice].usuario.nome + " o seu saldo foi para: R$" + bilhete[indice].getSaldo());
+			showMessageDialog(null, bilhete[indice].getUsuario().getNome() + " o seu saldo foi para: R$" + bilhete[indice].getSaldo());
 		}
 	}
 
@@ -68,8 +69,7 @@ public class Util {
 		if (indice == -1) {
 			showMessageDialog(null, "CPF " + cpf + " não cadastrado.");
 		} else {
-			showMessageDialog(null,
-					bilhete[indice].usuario.nome + " o seu saldo é de: R$" + bilhete[indice].getSaldo());
+			showMessageDialog(null, bilhete[indice].getUsuario().getNome() + " o seu saldo é de: R$" + bilhete[indice].getSaldo());
 		}
 	}
 
@@ -78,7 +78,7 @@ public class Util {
 	public int pesquisar(String cpf) {
 		int aux = -1;
 		for (int i = 0; i < posicao; i++) {
-			if (bilhete[i].usuario.cpf.equalsIgnoreCase(cpf)) {
+			if (bilhete[i].getUsuario().getCpf().equalsIgnoreCase(cpf)) {
 				aux = i;
 				break;
 			}
@@ -135,7 +135,7 @@ public class Util {
 				showConfirmDialog(null, "Opção inválida");
 			} else if (escolha == 1) {
 				cadastrarBilhete();
-			} else if(escolha == 2) {
+			} else if (escolha == 2) {
 				consultarBilhete();
 			}
 

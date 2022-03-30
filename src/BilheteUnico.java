@@ -4,9 +4,9 @@ public class BilheteUnico {
 
 	// atributos ou propriedades ou variáveis de instância
 
-	int numero;
-	double saldo;
-	double valorDaPassagem;
+	private int numero;
+	private double saldo;
+	private double valorDaPassagem;
 	Usuario usuario;
 
 	// método construtor para inicializar os atributos do objeto
@@ -24,14 +24,14 @@ public class BilheteUnico {
 	}
 
 	// metodo para carregar o bilhete unico.
-	public void carregar(int valor) {
+	public void carregar(double valor) {
 		saldo += valor;
 	}
 
 	public boolean passarNaCatraca() {
 		boolean auxiliar = false;
 
-		if (usuario.tipo.equalsIgnoreCase("Normal")) {
+		if (usuario.getTipo().equalsIgnoreCase("Normal")) {
 			if (saldo >= valorDaPassagem) {
 				saldo -= valorDaPassagem;
 				auxiliar = true;
@@ -44,5 +44,35 @@ public class BilheteUnico {
 		}
 		return auxiliar;
 	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
+	public double getValorDaPassagem() {
+		return valorDaPassagem;
+	}
+
+	public void setValorDaPassagem(double valorDaPassagem) {
+		this.valorDaPassagem = valorDaPassagem;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public void setSaldo(double saldo) {
+		this.saldo = saldo;
+	}
+	
+	
 
 }
